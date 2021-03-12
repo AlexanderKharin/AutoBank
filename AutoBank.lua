@@ -43,7 +43,7 @@ local function OnOpenBank(eventCode, bankBag)
                   if(result == true) then
                   	d("["..link .. "] x ".. count .." sended to the bank")
                   else
-                   	d("no place in the bank for ["..link .. "] x ".. count)
+                   	d("no space in the bank for ["..link .. "] x ".. count)
                   end 
 
             end
