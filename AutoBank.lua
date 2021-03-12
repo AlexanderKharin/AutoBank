@@ -16,7 +16,9 @@ local function MoveItem(toBagId, fromBagId, fromSlotIndex, stackCount)
             result = CallSecureProtected("PlaceInTransfer")
         end
         ClearCursor()
+        return result
     end
+    return false
 end
 
 local function hasItemIn(bagId, targetItemId)
@@ -37,8 +39,13 @@ local function OnOpenBank(eventCode, bankBag)
             if(hasItemInBank == true) then 
               local link = GetItemLink(BAG_BACKPACK, slotId)
                   local count = GetItemTotalCount(BAG_BACKPACK, slotId)
-                  MoveItem(BAG_BANK, BAG_BACKPACK, slotId, count)
-                  d("["..link .. "] x ".. count .." sended to the bank")
+                  local result = MoveItem(BAG_BANK, BAG_BACKPACK, slotId, count)
+                  if(result == true) then
+                  	d("["..link .. "] x ".. count .." sended to the bank")
+                  else
+                   	d("no place in the bank for ["..link .. "] x ".. count)
+                  end 
+
             end
         end
    end
